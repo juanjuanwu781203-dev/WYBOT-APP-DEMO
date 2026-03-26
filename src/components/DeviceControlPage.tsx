@@ -99,7 +99,7 @@ export const DeviceControlPage = ({
   const cleaningModesList = cleaningModeLabels === 'c2ProVisionLegacy' ? cleaningModesC2ProVision : cleaningModes;
 
   return (
-    <div className="flex min-h-screen w-full flex-col overflow-hidden bg-white">
+    <div className="flex h-full min-h-0 w-full flex-col overflow-hidden bg-white">
       <StatusBar time="14:49" battery="61%" />
       <div className="flex shrink-0 items-center gap-2 px-4 pb-2 pt-0">
         <button type="button" onClick={onBack} className="p-0.5" aria-label="Back">
@@ -162,8 +162,8 @@ export const DeviceControlPage = ({
       </div>
 
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-        <div className="flex min-h-0 flex-[1] flex-col px-4 pb-2 pt-1">
-          <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2">
+        <div className="flex min-h-0 flex-[0.52] flex-col px-4 pb-1.5 pt-1">
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-1.5">
             <div className="flex min-h-0 w-full flex-1 items-center justify-center bg-white">
               <img
                 src={productImage}
@@ -172,14 +172,14 @@ export const DeviceControlPage = ({
                 draggable={false}
               />
             </div>
-            <p className="mt-1 max-w-[320px] shrink-0 text-center text-[11px] leading-snug text-[#666666]">
+            <p className="max-w-[320px] shrink-0 px-1 text-center text-[10px] leading-snug text-[#666666]">
               The signal can not transmit through the water, so keep the robot out of the pool when presetting.
             </p>
           </div>
         </div>
 
-        <div className="flex min-h-0 flex-[2] flex-col overflow-hidden border-t border-[#EEEEEE] bg-white px-4 pb-4 pt-3">
-          <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
+        <div className="flex min-h-0 flex-[1.48] flex-col overflow-hidden border-t border-[#EEEEEE] bg-white px-4 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] pt-2">
+          <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-hidden">
             {showAiVisualCleaning && (
               <div className="flex shrink-0 items-center justify-between gap-3 rounded-[16px] bg-[#F8F9FA] px-3 py-2.5">
                 <div className="flex min-w-0 items-center gap-2">
@@ -199,11 +199,11 @@ export const DeviceControlPage = ({
             )}
 
             {showExtraDirtyPoolClean ? (
-              <div className="grid shrink-0 grid-cols-2 gap-3">
+              <div className="grid shrink-0 grid-cols-2 gap-2">
                 <button
                   type="button"
                   onClick={onOpenCycleTimer}
-                  className={`flex min-h-[108px] flex-col items-start rounded-[20px] p-3 text-left transition-opacity active:opacity-90 ${
+                  className={`flex min-h-[92px] flex-col items-start rounded-[20px] p-2.5 text-left transition-opacity active:opacity-90 ${
                     cycleTimerActive
                       ? 'border-2 border-[#00C2FF] bg-[#00C2FF]'
                       : 'border border-[#E5E7EB] bg-[#FAFAFA]'
@@ -232,7 +232,7 @@ export const DeviceControlPage = ({
                   </span>
                 </button>
 
-                <div className="flex min-h-[108px] flex-col justify-between rounded-[20px] border border-[#E5E7EB] bg-[#FAFAFA] p-3">
+                <div className="flex min-h-[92px] flex-col justify-between rounded-[20px] border border-[#E5E7EB] bg-[#FAFAFA] p-2.5">
                   <div className="flex items-start justify-between gap-2">
                     <span className="min-w-0 text-[12px] font-medium leading-snug text-[#111827]">
                       Extra-dirty Pool Clean
@@ -287,8 +287,8 @@ export const DeviceControlPage = ({
               </button>
             )}
 
-            <div className="mt-auto flex min-h-0 shrink-0 flex-col gap-2">
-              <div className="flex items-center justify-between gap-2">
+            <div className="flex min-h-0 flex-1 flex-col gap-1.5 overflow-y-auto">
+              <div className="flex shrink-0 items-center justify-between gap-2">
                 <span className="text-[13px] font-semibold text-[#111827]">Cleaning Mode</span>
                 <button
                   type="button"
@@ -299,7 +299,7 @@ export const DeviceControlPage = ({
                   <ChevronRight size={16} strokeWidth={2} />
                 </button>
               </div>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-1.5 pb-0.5">
                 {cleaningModesList.map((m) => {
                   const id = m.id as DeviceCleaningModeId;
                   const selected = cleaningMode === id;
@@ -312,9 +312,9 @@ export const DeviceControlPage = ({
                       type="button"
                       disabled={disabled}
                       onClick={() => !disabled && setCleaningMode(id)}
-                      className={`flex min-w-0 flex-col items-center justify-center rounded-[14px] border px-0.5 py-2 transition-colors ${
+                      className={`flex min-w-0 flex-col items-center justify-center rounded-[14px] border px-0.5 py-1.5 transition-colors ${
                         disabled ? 'cursor-not-allowed opacity-40 grayscale' : ''
-                      } ${hideLabel ? 'gap-0' : 'gap-1'}`}
+                      } ${hideLabel ? 'gap-0' : 'gap-0.5'}`}
                       style={{
                         background: selected ? WATER_BLUE : '#FFFFFF',
                         borderColor: selected ? WATER_BLUE : '#EEEEEE',
@@ -322,7 +322,7 @@ export const DeviceControlPage = ({
                     >
                       <div
                         className={`flex items-center justify-center ${
-                          hideLabel ? 'h-[52px] w-[52px]' : 'h-11 w-11'
+                          hideLabel ? 'h-[46px] w-[46px]' : 'h-10 w-10'
                         }`}
                       >
                         <img
@@ -334,7 +334,7 @@ export const DeviceControlPage = ({
                         />
                       </div>
                       {!hideLabel && (
-                        <span className="line-clamp-2 w-full text-center text-[10px] font-medium leading-[1.2] text-[#333333]">
+                        <span className="line-clamp-2 w-full text-center text-[9px] font-medium leading-[1.2] text-[#333333]">
                           {m.label.replace(/:\s*$/, '')}
                         </span>
                       )}

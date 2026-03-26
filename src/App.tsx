@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LoginPage } from './components/LoginPage';
 import { MainPage } from './components/MainPage';
@@ -26,6 +26,37 @@ import {
 import poolDiamondThumb from './assets/pools/pool-diamond.png.png';
 
 export type { DeviceControlModel };
+
+/** 设计稿尺寸；在浏览器中按比例缩小以适配可视区域（含移动端地址栏） */
+const DESIGN_W = 375;
+const DESIGN_H = 812;
+
+function useAppFrameScale() {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const update = () => {
+      const vv = window.visualViewport;
+      const vw = Math.max(0, (vv?.width ?? window.innerWidth) - 16);
+      const vh = Math.max(0, (vv?.height ?? window.innerHeight) - 16);
+      setScale(Math.min(1, vw / DESIGN_W, vh / DESIGN_H));
+    };
+    update();
+    window.addEventListener('resize', update);
+    window.addEventListener('orientationchange', update);
+    const vv = window.visualViewport;
+    vv?.addEventListener('resize', update);
+    vv?.addEventListener('scroll', update);
+    return () => {
+      window.removeEventListener('resize', update);
+      window.removeEventListener('orientationchange', update);
+      vv?.removeEventListener('resize', update);
+      vv?.removeEventListener('scroll', update);
+    };
+  }, []);
+
+  return scale;
+}
 
 export type Page =
   | 'login'
@@ -131,22 +162,31 @@ function App() {
   const { showJoinVisionProgram: _omitJoinVisionForControlPage, ...deviceControlPageConfig } =
     deviceControlCfg;
 
+  const frameScale = useAppFrameScale();
+
   return (
     <div
-      className="w-full min-h-screen flex justify-center items-center"
+      className="box-border flex h-dvh min-h-dvh w-full items-center justify-center p-2"
       style={{ background: '#1a1a1a' }}
     >
-      <motion.div
-        className="relative h-[812px] overflow-hidden"
-        initial={false}
-        animate={{
-          width: 375,
-          height: 812,
-          borderRadius: 40,
-          boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
+      <div
+        className="relative overflow-hidden rounded-[40px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]"
+        style={{
+          width: DESIGN_W * frameScale,
+          height: DESIGN_H * frameScale,
+          background: '#F7F7F7',
         }}
-        style={{ background: '#F7F7F7' }}
       >
+        <div
+          className="absolute left-0 top-0 overflow-hidden rounded-[40px]"
+          style={{
+            width: DESIGN_W,
+            height: DESIGN_H,
+            transform: `scale(${frameScale})`,
+            transformOrigin: 'top left',
+          }}
+        >
+          <div className="relative h-[812px] w-[375px] overflow-hidden bg-[#F7F7F7]">
         <AnimatePresence mode="wait">
           {page === 'login' && (
             <motion.div
@@ -382,7 +422,9 @@ function App() {
         {showAbout && (
           <AboutModal onClose={() => setShowAbout(false)} />
         )}
-      </motion.div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
