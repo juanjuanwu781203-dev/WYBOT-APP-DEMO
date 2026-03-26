@@ -7,6 +7,9 @@ import { appBackgroundStyle } from '../config/appBackground';
 import { homeAssets } from '../config/homeAssets';
 import deviceCardBg from '../assets/backgrounds/device-card-background.png';
 import c2pvDevice from '../assets/devices/device_wybot_c2pv.png.png';
+import c1Device from '../assets/devices/device_wybot_c1.png.png';
+import s2Device from '../assets/devices/device_wybot_s2.png.png';
+import s2svDevice from '../assets/devices/device_wybot_s2sv.png.png';
 import s3Device from '../assets/devices/device_wybot_s3.png.png';
 import type { DeviceControlModel } from '../config/deviceControlModels';
 
@@ -167,12 +170,11 @@ export const MainPage = ({
                 onClick={() => onOpenDeviceControl('c1')}
                 className="aspect-square w-full min-w-0 rounded-[24px] overflow-hidden relative cursor-pointer transition-transform active:scale-95 text-left border-0 p-0 bg-transparent"
               >
-                <div className="absolute inset-0 bg-cover bg-center flex items-end justify-end p-4" style={{ backgroundImage: 'url(/src/assets/backgrounds/device-card-background.png)' }}>
-                  <img 
-                    src="/src/assets/devices/device_wybot_c1.png.png" 
-                    alt="WYBOT C1" 
-                    className="w-2/3 h-auto object-contain"
-                  />
+                <div
+                  className="absolute inset-0 bg-cover bg-center flex items-end justify-end p-4"
+                  style={{ backgroundImage: `url(${deviceCardBg})` }}
+                >
+                  <img src={c1Device} alt="WYBOT C1" className="w-2/3 h-auto object-contain" />
                 </div>
                 <div className="absolute top-2 left-2 flex flex-col gap-1.5 pointer-events-none">
                   <span className="text-black text-sm font-medium">WYBOT C1</span>
@@ -191,12 +193,11 @@ export const MainPage = ({
                 onClick={() => onOpenDeviceControl('s2')}
                 className="aspect-square w-full min-w-0 rounded-[24px] overflow-hidden relative cursor-pointer transition-transform active:scale-95 text-left border-0 p-0 bg-transparent"
               >
-                <div className="absolute inset-0 bg-cover bg-center flex items-end justify-end p-4" style={{ backgroundImage: 'url(/src/assets/backgrounds/device-card-background.png)' }}>
-                  <img 
-                    src="/src/assets/devices/device_wybot_s2.png.png" 
-                    alt="WYBOT S2" 
-                    className="w-2/3 h-auto object-contain"
-                  />
+                <div
+                  className="absolute inset-0 bg-cover bg-center flex items-end justify-end p-4"
+                  style={{ backgroundImage: `url(${deviceCardBg})` }}
+                >
+                  <img src={s2Device} alt="WYBOT S2" className="w-2/3 h-auto object-contain" />
                 </div>
                 <div className="absolute top-2 left-2 flex flex-col gap-1.5 pointer-events-none">
                   <span className="text-black text-sm font-medium">WYBOT S2</span>
@@ -215,12 +216,11 @@ export const MainPage = ({
                 onClick={() => onOpenDeviceControl('s2sv')}
                 className="aspect-square w-full min-w-0 rounded-[24px] overflow-hidden relative cursor-pointer transition-transform active:scale-95 text-left border-0 p-0 bg-transparent"
               >
-                <div className="absolute inset-0 bg-cover bg-center flex items-end justify-end p-4" style={{ backgroundImage: 'url(/src/assets/backgrounds/device-card-background.png)' }}>
-                  <img 
-                    src="/src/assets/devices/device_wybot_s2sv.png.png" 
-                    alt="WYBOT S2SV" 
-                    className="w-1/2 h-auto object-contain"
-                  />
+                <div
+                  className="absolute inset-0 bg-cover bg-center flex items-end justify-end p-4"
+                  style={{ backgroundImage: `url(${deviceCardBg})` }}
+                >
+                  <img src={s2svDevice} alt="WYBOT S2SV" className="w-1/2 h-auto object-contain" />
                 </div>
                 <div className="absolute top-2 left-2 flex flex-col gap-1.5 pointer-events-none">
                   <span className="text-black text-sm font-medium">WYBOT S2SV</span>
@@ -239,12 +239,11 @@ export const MainPage = ({
                 onClick={() => onOpenDeviceControl('s3')}
                 className="aspect-square w-full min-w-0 rounded-[24px] overflow-hidden relative cursor-pointer transition-transform active:scale-95 text-left border-0 p-0 bg-transparent"
               >
-                <div className="absolute inset-0 bg-cover bg-center flex items-end justify-end p-4" style={{ backgroundImage: 'url(/src/assets/backgrounds/device-card-background.png)' }}>
-                  <img 
-                    src={s3Device} 
-                    alt="WYBOT S3" 
-                    className="w-1/2 h-auto object-contain"
-                  />
+                <div
+                  className="absolute inset-0 bg-cover bg-center flex items-end justify-end p-4"
+                  style={{ backgroundImage: `url(${deviceCardBg})` }}
+                >
+                  <img src={s3Device} alt="WYBOT S3" className="w-1/2 h-auto object-contain" />
                 </div>
                 <div className="absolute top-2 left-2 flex flex-col gap-1.5 pointer-events-none">
                   <span className="text-black text-sm font-medium">WYBOT S3</span>

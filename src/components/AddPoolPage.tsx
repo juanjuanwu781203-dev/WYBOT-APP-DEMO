@@ -1,6 +1,16 @@
 import { useState } from 'react';
 import { ArrowLeft, Check } from 'lucide-react';
 import { StatusBar } from './StatusBar';
+import shapeRectangle from '../assets/pools/shape-rectangle.png';
+import shapeFreeform from '../assets/pools/shape-freeform.png';
+import shapeOval from '../assets/pools/shape-oval.png';
+import bottomFlat from '../assets/pools/bottom-flat.png';
+import bottomDeepFlat from '../assets/pools/bottom-deep-flat.png';
+import bottomHopper from '../assets/pools/bottom-hopper.png';
+import materialGunite from '../assets/pools/material-gunite.png';
+import materialTile from '../assets/pools/material-tile.png';
+import materialVinyl from '../assets/pools/material-vinyl.png';
+import materialFiberglass from '../assets/pools/material-fiberglass.png';
 
 interface AddPoolPageProps {
   onBack: () => void;
@@ -16,22 +26,22 @@ interface PoolOption {
 
 export const AddPoolPage = ({ onBack, onAddPool }: AddPoolPageProps) => {
   const [poolShape, setPoolShape] = useState<PoolOption[]>([
-    { id: 1, name: 'Rectangle', image: '/src/assets/pools/shape-rectangle.png', selected: true },
-    { id: 2, name: 'Freeform', image: '/src/assets/pools/shape-freeform.png', selected: false },
-    { id: 3, name: 'Oval & Round', image: '/src/assets/pools/shape-oval.png', selected: false },
+    { id: 1, name: 'Rectangle', image: shapeRectangle, selected: true },
+    { id: 2, name: 'Freeform', image: shapeFreeform, selected: false },
+    { id: 3, name: 'Oval & Round', image: shapeOval, selected: false },
   ]);
 
   const [bottomSlope, setBottomSlope] = useState<PoolOption[]>([
-    { id: 1, name: 'Flat', image: '/src/assets/pools/bottom-flat.png', selected: true },
-    { id: 2, name: 'Deep Flat', image: '/src/assets/pools/bottom-deep-flat.png', selected: false },
-    { id: 3, name: 'Standard Hopper Bottom', image: '/src/assets/pools/bottom-hopper.png', selected: false },
+    { id: 1, name: 'Flat', image: bottomFlat, selected: true },
+    { id: 2, name: 'Deep Flat', image: bottomDeepFlat, selected: false },
+    { id: 3, name: 'Standard Hopper Bottom', image: bottomHopper, selected: false },
   ]);
 
   const [poolMaterial, setPoolMaterial] = useState<PoolOption[]>([
-    { id: 1, name: 'Gunite', image: '/src/assets/pools/material-gunite.png', selected: true },
-    { id: 2, name: 'Tile', image: '/src/assets/pools/material-tile.png', selected: false },
-    { id: 3, name: 'Vinyl', image: '/src/assets/pools/material-vinyl.png', selected: false },
-    { id: 4, name: 'Fiberglass', image: '/src/assets/pools/material-fiberglass.png', selected: false },
+    { id: 1, name: 'Gunite', image: materialGunite, selected: true },
+    { id: 2, name: 'Tile', image: materialTile, selected: false },
+    { id: 3, name: 'Vinyl', image: materialVinyl, selected: false },
+    { id: 4, name: 'Fiberglass', image: materialFiberglass, selected: false },
   ]);
 
   const [showNameModal, setShowNameModal] = useState(false);

@@ -23,6 +23,7 @@ import {
   S3_CONTROL_PLACEHOLDER_IMAGES,
   type DeviceControlModel,
 } from './config/deviceControlModels';
+import poolDiamondThumb from './assets/pools/pool-diamond.png.png';
 
 export type { DeviceControlModel };
 
@@ -49,9 +50,9 @@ function App() {
   const [showAbout, setShowAbout] = useState(false);
   const [activeTab, setActiveTab] = useState<'home' | 'user'>('home');
   const [pools, setPools] = useState([
-    { id: 1, name: 'Tile', image: '/src/assets/pools/pool-diamond.png.png', selected: false },
-    { id: 2, name: 'My pool', image: '/src/assets/pools/pool-diamond.png.png', selected: false },
-    { id: 3, name: 'My pool 3', image: '/src/assets/pools/pool-diamond.png.png', selected: true },
+    { id: 1, name: 'Tile', image: poolDiamondThumb, selected: false },
+    { id: 2, name: 'My pool', image: poolDiamondThumb, selected: false },
+    { id: 3, name: 'My pool 3', image: poolDiamondThumb, selected: true },
   ]);
   const [addPoolReturnTarget, setAddPoolReturnTarget] = useState<'pool-setup' | 'device-pool-setup'>('pool-setup');
   const [cycleTimerByDevice, setCycleTimerByDevice] = useState<
