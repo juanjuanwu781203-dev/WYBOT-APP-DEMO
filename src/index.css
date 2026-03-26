@@ -1,0 +1,81 @@
+/* 阿里巴巴普惠体（与 iconfont 网页字体同源 TTF，经 Sunmi CDN 托管） */
+@font-face {
+  font-family: 'Alibaba PuHuiTi';
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://static.cdn.sunmi.com/assets/fonts/Alibaba-PuHuiTi-Light.ttf')
+    format('truetype');
+}
+@font-face {
+  font-family: 'Alibaba PuHuiTi';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://static.cdn.sunmi.com/assets/fonts/Alibaba-PuHuiTi-Regular.ttf')
+    format('truetype');
+}
+@font-face {
+  font-family: 'Alibaba PuHuiTi';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://static.cdn.sunmi.com/assets/fonts/Alibaba-PuHuiTi-Medium.ttf')
+    format('truetype');
+}
+@font-face {
+  font-family: 'Alibaba PuHuiTi';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://static.cdn.sunmi.com/assets/fonts/Alibaba-PuHuiTi-Bold.ttf')
+    format('truetype');
+}
+@font-face {
+  font-family: 'Alibaba PuHuiTi';
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://static.cdn.sunmi.com/assets/fonts/Alibaba-PuHuiTi-Heavy.ttf')
+    format('truetype');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Alibaba PuHuiTi', 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  background: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@layer base {
+  #root {
+    font-family: inherit;
+    @apply font-sans antialiased;
+  }
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CCCCCC;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999999;
+}
