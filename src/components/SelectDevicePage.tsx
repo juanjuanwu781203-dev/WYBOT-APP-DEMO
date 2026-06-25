@@ -14,8 +14,10 @@ import f1 from '../assets/devices/device_wybot_f1.png.png';
 import s2s from '../assets/devices/device_wybot_s2s.png.png';
 import s2sv from '../assets/devices/device_wybot_s2sv.png.png';
 import s3 from '../assets/devices/device_wybot_s3.png.png';
+import u1 from '../assets/devices/device_wybot_u1.png.png';
+import b1 from '../assets/devices/device_wybot_b1.png.png';
+import g1 from '../assets/devices/device_wybot_g1.png';
 
-// 设备图片映射
 const deviceImages = {
   'WYBOT C1': c1,
   'WYBOT C2': c2,
@@ -28,11 +30,15 @@ const deviceImages = {
   'WYBOT S2S': s2s,
   'WYBOT S2SV': s2sv,
   'WYBOT S3': s3,
+  'WYBOT U1': u1,
+  'WYBOT B1': b1,
+  'WYBOT C3PRO': u1,
+  'WYBOT G1': g1,
 };
 
 interface SelectDevicePageProps {
   onBack: () => void;
-  onSelectDevice: () => void;
+  onSelectDevice: (model: string) => void;
 }
 
 export const SelectDevicePage = ({ onBack, onSelectDevice }: SelectDevicePageProps) => (
@@ -61,7 +67,7 @@ export const SelectDevicePage = ({ onBack, onSelectDevice }: SelectDevicePagePro
       {devices.map((device) => (
         <button
           key={device.id}
-          onClick={onSelectDevice}
+          onClick={() => onSelectDevice(device.model)}
           className="w-full flex items-center gap-4 p-4 mb-4 rounded-[24px] text-left transition-opacity active:opacity-80"
           style={{ background: '#E9EEF2' }}
         >

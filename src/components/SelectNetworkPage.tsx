@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Wifi } from 'lucide-react';
+import { ArrowLeft, ChevronRight, Lock, Plus, Wifi, X } from 'lucide-react';
 import { StatusBar } from './StatusBar';
 import { networks } from '../data/mockData';
 
@@ -7,65 +7,138 @@ interface SelectNetworkPageProps {
   onBack: () => void;
   onSetLater: () => void;
   onSelectNetwork: (network: string) => void;
+  selectedDeviceModel?: string;
 }
 
-export const SelectNetworkPage = ({ onBack, onSetLater, onSelectNetwork }: SelectNetworkPageProps) => {
+export const SelectNetworkPage = ({ onBack, onSetLater, onSelectNetwork, selectedDeviceModel }: SelectNetworkPageProps) => {
   const [selectedNetwork, setSelectedNetwork] = useState<string | null>(null);
+  const [showManualAdd, setShowManualAdd] = useState(false);
+  const [manualSsid, setManualSsid] = useState('');
+  const [manualPassword, setManualPassword] = useState('');
+  const isG1 = selectedDeviceModel === 'WYBOT G1';
 
   const handleNetworkSelect = (network: string) => {
     setSelectedNetwork(network);
-    onSelectNetwork(network);
+    setTimeout(() => onSelectNetwork(network), 350);
+  };
+
+  const handleManualJoin = () => {
+    const ssid = manualSsid.trim();
+    if (!ssid) return;
+    setSelectedNetwork(ssid);
+    setShowManualAdd(false);
+    setTimeout(() => onSelectNetwork(ssid), 350);
   };
 
   return (
-    <div
-      className="w-full flex flex-col"
-      style={{ 
-        background: '#FFFFFF',
-        height: '812px',
-        overflow: 'hidden'
-      }}
-    >
+    <div className="relative flex h-[812px] w-full flex-col overflow-hidden bg-white">
       <StatusBar time="14:51" battery="60%" />
-      <div className="flex items-center gap-3 px-5 py-3 flex-shrink-0">
-        <button onClick={onBack} className="p-1">
+      <div className="flex shrink-0 items-center gap-3 px-5 py-3">
+        <button onClick={onBack} className="p-1" aria-label="返回">
           <ArrowLeft size={24} strokeWidth={2} className="text-[#000000]" />
         </button>
-        <span className="text-[16px] font-semibold text-[#000000] uppercase">SELECT NETWORK</span>
+        <span className="text-[18px] font-semibold text-[#000000]">Select Wi-Fi</span>
       </div>
+
       <div className="px-5 py-4">
-        <p className="text-[14px] text-[#666666] mb-6">Only 2.4GHz Wi-Fi networks are supported.</p>
         <div className="space-y-3">
-          {networks.map((network, index) => (
+          {networks.map((network) => (
             <button
-              key={index}
+              key={network.ssid}
               onClick={() => handleNetworkSelect(network.ssid)}
-              className={`w-full flex items-center gap-3 p-4 rounded-[12px] transition-all ${selectedNetwork === network.ssid ? 'bg-blue-100 border-2 border-blue-500' : 'bg-gray-100'}`}
+              className="flex w-full items-center gap-3 rounded-[14px] border p-4 text-left transition-all"
               style={{
-                backgroundColor: selectedNetwork === network.ssid ? '#00C2FF' : '#F3F4F6',
-                border: selectedNetwork === network.ssid ? '2px solid #00C2FF' : '2px solid transparent'
+                background: selectedNetwork === network.ssid ? '#E0F4FF' : '#F3F4F6',
+                borderColor: selectedNetwork === network.ssid ? '#00C2FF' : 'transparent',
               }}
             >
-              <Wifi size={20} strokeWidth={2} className={`flex-shrink-0 ${selectedNetwork === network.ssid ? 'text-white' : 'text-[#000000]'}`} />
-              <span className={`flex-1 text-[16px] ${selectedNetwork === network.ssid ? 'text-white' : 'text-[#000000]'}`}>{network.ssid}</span>
+              <Wifi size={20} strokeWidth={2} className={selectedNetwork === network.ssid ? 'text-[#00A7E1]' : 'text-[#111827]'} />
+              <span className="flex-1 text-[15px] font-medium text-[#111827]">{network.ssid}</span>
+              <Lock size={15} strokeWidth={2} className="text-[#9CA3AF]" />
             </button>
           ))}
         </div>
       </div>
-      <div className="flex-1 flex flex-col justify-end px-5 pb-8">
-        <div className="mb-6">
-          <p className="text-[14px] text-[#666666] leading-relaxed text-center">
-            You have bound the cleaner successfully through the Bluetooth, you can continue connecting to the WiFi for upgrading the firmware faster.
-          </p>
-        </div>
+
+      <div className="flex flex-1 flex-col justify-end px-5 pb-8">
         <button
-          onClick={onSetLater}
-          className="w-full py-4 rounded-[50px] text-[16px] font-medium text-white transition-opacity active:opacity-90"
-          style={{ background: '#000000' }}
+          onClick={() => setShowManualAdd(true)}
+          className="mb-3 flex w-full items-center gap-3 rounded-[18px] bg-[#F3F4F6] px-4 py-4 text-left active:opacity-90"
         >
-          Set Later
+          <div className="grid h-8 w-8 place-items-center rounded-full bg-white">
+            <Plus size={18} strokeWidth={2.2} className="text-[#00A7E1]" />
+          </div>
+          <span className="flex-1 text-[15px] font-semibold text-[#111827]">手动添加 Wi-Fi</span>
+          <ChevronRight size={18} strokeWidth={2} className="text-[#9CA3AF]" />
         </button>
+
+        <div className="mb-4 rounded-[18px] bg-[#F5F8FB] p-4">
+          <div className="flex items-center gap-2 text-[15px] font-semibold text-[#111827]">
+            <Wifi size={19} strokeWidth={2} className="text-[#00A7E1]" />
+            {isG1 ? 'G1Pro 需要连接 2.4GHz Wi-Fi' : 'Only 2.4GHz Wi-Fi networks are supported'}
+          </div>
+        </div>
+
+        {!isG1 && (
+          <button
+            onClick={onSetLater}
+            className="w-full rounded-full bg-[#111827] py-4 text-[16px] font-semibold text-white active:opacity-90"
+          >
+            Set Later
+          </button>
+        )}
       </div>
+
+      {showManualAdd && (
+        <div className="absolute inset-0 z-40 flex items-end bg-black/35">
+          <div className="w-full rounded-t-[28px] bg-white px-5 pb-6 pt-4 shadow-[0_-12px_36px_rgba(15,23,42,0.18)]">
+            <div className="mb-4 flex items-center justify-between">
+              <button onClick={() => setShowManualAdd(false)} className="grid h-8 w-8 place-items-center rounded-full bg-[#F3F4F6]" aria-label="关闭">
+                <X size={17} strokeWidth={2.2} className="text-[#111827]" />
+              </button>
+              <div className="text-[16px] font-semibold text-[#111827]">手动加入网络</div>
+              <button
+                onClick={handleManualJoin}
+                disabled={!manualSsid.trim()}
+                className="text-[14px] font-semibold text-[#00A7E1] disabled:text-[#CBD5E1]"
+              >
+                加入
+              </button>
+            </div>
+
+            <div className="overflow-hidden rounded-[16px] bg-[#F3F4F6]">
+              <label className="flex items-center border-b border-white px-4 py-3">
+                <span className="w-20 text-[14px] text-[#6B7280]">名称</span>
+                <input
+                  value={manualSsid}
+                  onChange={(event) => setManualSsid(event.target.value)}
+                  placeholder="输入网络名称"
+                  className="min-w-0 flex-1 bg-transparent text-[15px] font-medium text-[#111827] outline-none placeholder:text-[#A0A7B2]"
+                />
+              </label>
+              <div className="flex items-center border-b border-white px-4 py-3">
+                <span className="w-20 text-[14px] text-[#6B7280]">安全性</span>
+                <span className="flex-1 text-[15px] font-medium text-[#111827]">WPA/WPA2</span>
+                <ChevronRight size={17} strokeWidth={2} className="text-[#9CA3AF]" />
+              </div>
+              <label className="flex items-center px-4 py-3">
+                <span className="w-20 text-[14px] text-[#6B7280]">密码</span>
+                <input
+                  value={manualPassword}
+                  onChange={(event) => setManualPassword(event.target.value)}
+                  placeholder="输入密码"
+                  type="password"
+                  className="min-w-0 flex-1 bg-transparent text-[15px] font-medium text-[#111827] outline-none placeholder:text-[#A0A7B2]"
+                />
+              </label>
+            </div>
+
+            <p className="mt-3 text-[12px] leading-5 text-[#6B7280]">
+              请确认网络为 2.4GHz，名称和密码区分大小写。
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
