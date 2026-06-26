@@ -241,7 +241,6 @@ export const G1NoGoSetupPage = ({ onBack, onLandscapeChange }: G1NoGoSetupPagePr
             if (method === 'remote' && start) {
               setPoints([start]);
               setClosed(false);
-              setRemoteRunning(true);
               setStage('tracing');
             } else {
               reset();

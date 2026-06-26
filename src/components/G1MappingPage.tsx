@@ -24,7 +24,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { StatusBar } from './StatusBar';
-import { LandscapeShell, RemotePad, PadButton } from './RemoteMappingShared';
+import { LandscapeShell, RemotePad } from './RemoteMappingShared';
 
 type AreaType = 'mowing' | 'nogo' | 'passage' | 'recharge';
 type MappingMode = 'select' | 'remote-start' | 'auto' | 'manual' | 'dock-route' | 'closure' | 'complete' | 'edit';
