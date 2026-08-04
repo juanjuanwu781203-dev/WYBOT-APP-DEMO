@@ -10,20 +10,17 @@ export const devices = [
   { id: '009', model: 'WYBOT S2S', sn: 'C5D1E7F0A9B' },
   { id: '010', model: 'WYBOT S2SV', sn: 'D6E2F8A1B0C' },
   { id: '011', model: 'WYBOT S3', sn: 'E7F3A9B2C1D' },
-  { id: '012', model: 'WYBOT U1', sn: 'F8A4B0C3D2E' },
-  { id: '013', model: 'WYBOT B1', sn: 'A9B5C1D7E3F' },
-  { id: '014', model: 'WYBOT C3PRO', sn: 'B0C6D2E8F4A' },
-  { id: '015', model: 'WYBOT G1', sn: 'G1P9L2N6M0Q' },
 ];
 
 export const networks = [
   { ssid: 'MERCURY_2.4G_99D9' },
   { ssid: 'wangyuankeji' },
-  { ssid: 'WYBOT_Lab_2.4G' },
+  { ssid: '泳池实验' },
   { ssid: 'FAST_2.4G_F89A' },
-  { ssid: 'Garden_2.4G' },
+  { ssid: '中南家属院大屋' },
 ];
 
+/** 简短标签（WYBOT C1、S2 等） */
 export const cleaningModes = [
   { id: 'floor-2h', label: 'Floor:', icon: 'floor' },
   { id: 'wall', label: 'Wall', icon: 'wall' },
@@ -34,6 +31,7 @@ export const cleaningModes = [
   { id: 'eco-3h', label: 'Eco Floor', icon: 'eco' },
 ];
 
+/** WYBOT C2 Pro Vision 原版文案（含括号时长） */
 export const cleaningModesC2ProVision = [
   { id: 'floor-2h', label: 'Floor(2H):', icon: 'floor' },
   { id: 'wall', label: 'Wall', icon: 'wall' },

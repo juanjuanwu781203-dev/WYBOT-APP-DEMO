@@ -7,17 +7,12 @@ interface DeviceInformationPageProps {
   deviceName?: string;
   /** 仅 WYBOT C2 Pro Vision 等为 true */
   showJoinVisionProgram?: boolean;
-  /** 仅 WYBOT S2：在功能列表中显示「After-Sales Verification」入口 */
-  showAfterSalesTab?: boolean;
-  onOpenAfterSales?: () => void;
 }
 
 export const DeviceInformationPage = ({
   onBack,
   deviceName = 'WYBOT C2Pro Vision',
   showJoinVisionProgram = false,
-  showAfterSalesTab = false,
-  onOpenAfterSales,
 }: DeviceInformationPageProps) => {
   const [visionProgram, setVisionProgram] = useState(false);
 
@@ -84,16 +79,6 @@ export const DeviceInformationPage = ({
           {row('Reset WiFi', undefined, true)}
           {row('Equipment calibration', undefined, true)}
           {row('About the device', undefined, true)}
-          {showAfterSalesTab && onOpenAfterSales && (
-            <button
-              type="button"
-              onClick={onOpenAfterSales}
-              className="flex w-full items-center justify-between border-b border-[#F0F0F0] py-3.5 text-left last:border-0"
-            >
-              <span className="text-[15px] text-[#111827]">After-Sales Verification</span>
-              <ChevronRight size={18} className="text-[#999999]" />
-            </button>
-          )}
         </div>
       </div>
     </div>

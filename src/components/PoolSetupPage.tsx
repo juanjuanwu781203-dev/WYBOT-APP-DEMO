@@ -54,7 +54,7 @@ export const PoolSetupPage = ({ onBack, onAddPool, onComplete, pools, setPools }
         <button onClick={onBack} className="p-1">
           <ArrowLeft size={24} strokeWidth={2} className="text-[#000000]" />
         </button>
-        <span className="text-[18px] text-[#000000] uppercase">SWIMMING POOL SELECTION</span>
+        <span className="text-[16px] font-semibold text-[#000000] uppercase">SWIMMING POOL SELECTION</span>
       </div>
       <div className="flex-1 px-5 py-6 overflow-y-auto">
         {pools.map((pool) => (

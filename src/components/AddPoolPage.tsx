@@ -95,7 +95,7 @@ export const AddPoolPage = ({ onBack, onAddPool }: AddPoolPageProps) => {
         <button onClick={onBack} className="p-1">
           <ArrowLeft size={24} strokeWidth={2} className="text-[#000000]" />
         </button>
-        <span className="text-[18px] text-[#000000]">Swimming Pool</span>
+        <span className="text-[16px] font-semibold text-[#000000]">Swimming Pool</span>
       </div>
       <div className="flex-1 px-5 py-6 overflow-y-auto">
         <div className="mb-8">
@@ -210,7 +210,7 @@ export const AddPoolPage = ({ onBack, onAddPool }: AddPoolPageProps) => {
       {showNameModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-[16px] p-6 w-[80%] max-w-sm">
-            <h3 className="text-[18px] font-medium text-[#000000] mb-4 text-center">Set Pool Name</h3>
+            <h3 className="text-[16px] font-semibold text-[#000000] mb-4 text-center">Set Pool Name</h3>
             <input
               type="text"
               value={poolName}
